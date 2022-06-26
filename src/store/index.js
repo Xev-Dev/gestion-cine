@@ -27,10 +27,10 @@ export default createStore({
         let divisible = (i == 1) ? 2 : 4
         let index = Math.floor(state.movies[selected].totalSeats / divisible)
         for(let j = 0; j < index; j++){
-            if(checkSelectedSeat(i,j)){
+            if(localStorage.getItem('seatsSelecteds')&&checkSeats(state,i,j,'selected')){
               state.seats[i] = [...state.seats[i],{position:{column:i,index:j},state:'selected'}]
               state.seatsSelecteds = [...state.seatsSelecteds, {column:i,index:j}]
-            }else if(checkAvailableSeat(state,i,j)){
+            }else if(checkSeats(state,i,j,'available')){
               state.seats[i] = [...state.seats[i],{position:{column:i,index:j},state:'unselected'}]
             }else{
               state.seats[i] = [...state.seats[i],{position:{column:i,index:j},state:'occupied'}]
@@ -58,19 +58,11 @@ export default createStore({
     }
   },
 })
-function checkAvailableSeat(state,i,j){
+function checkSeats(state,i,j,condition){
   let bool = false
-  state.movies[state.selectedMovie].availableSeats.forEach(element => {
-    if(element.column === i && element.index === j){
-      bool = true
-    }
-  })
-  return bool
-}
-function checkSelectedSeat(i,j){
-  let bool = false
-  const selecteds = JSON.parse(localStorage.getItem('seatsSelecteds'))
-  selecteds.forEach(element => {
+  const array = condition==='available'?state.movies[state.selectedMovie].availableSeats:
+  JSON.parse(localStorage.getItem('seatsSelecteds'))
+  array.forEach(element => {
     if(element.column === i && element.index === j){
       bool = true
     }
