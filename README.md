@@ -1,24 +1,2 @@
-# gestion-cine-jmb
-
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+#DEMO -> https://xevcinemanagement.herokuapp.com/
+#TECHNOLOGIES -> Vue CLI, Vue 3, TailwindCSSv3, Vuex, LocalStorage
